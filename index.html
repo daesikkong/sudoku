@@ -10,7 +10,17 @@
     <div class="container">
         <div class="header">
             <h1>🎮 스도쿠 게임</h1>
-            <div class="error-count">에러: <span id="errorCount">0</span></div>
+            <div class="game-info">
+                <div class="difficulty">난이도: <span id="difficultyDisplay">쉬움</span></div>
+                <div class="timer">시간: <span id="timer">00:00</span></div>
+                <div class="error-count">에러: <span id="errorCount">0</span></div>
+            </div>
+        </div>
+
+        <div class="difficulty-buttons">
+            <button class="difficulty-btn easy-btn" onclick="changeDifficulty('easy')">쉬움</button>
+            <button class="difficulty-btn medium-btn" onclick="changeDifficulty('medium')">중간</button>
+            <button class="difficulty-btn hard-btn" onclick="changeDifficulty('hard')">어려움</button>
         </div>
 
         <div class="board" id="board"></div>

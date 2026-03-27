@@ -29,13 +29,71 @@ body {
 
 .header h1 {
     color: #333;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.difficulty {
+    color: #3498db;
+}
+
+.timer {
+    color: #e67e22;
 }
 
 .error-count {
-    font-size: 24px;
-    font-weight: bold;
     color: #e74c3c;
+}
+
+.difficulty-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.difficulty-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    border: 2px solid #3498db;
+    background-color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.difficulty-btn:hover {
+    background-color: #ecf0f1;
+}
+
+.difficulty-btn.selected {
+    background-color: #3498db;
+    color: white;
+    border-color: #2980b9;
+}
+
+.easy-btn.selected {
+    background-color: #27ae60;
+    border-color: #229954;
+}
+
+.medium-btn.selected {
+    background-color: #f39c12;
+    border-color: #e67e22;
+}
+
+.hard-btn.selected {
+    background-color: #e74c3c;
+    border-color: #c0392b;
 }
 
 .board {
@@ -207,4 +265,163 @@ body {
 
 .modal-content button:hover {
     background-color: #2980b9;
+}
+
+/* 모바일 반응형 디자인 */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .header h1 {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+    .game-info {
+        flex-direction: column;
+        gap: 8px;
+        font-size: 14px;
+    }
+
+    .board {
+        width: 95vw;
+        height: 95vw;
+        max-width: 500px;
+        max-height: 500px;
+    }
+
+    .tile {
+        font-size: 18px;
+    }
+
+    .buttons-container {
+        gap: 6px;
+    }
+
+    .num-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 16px;
+    }
+
+    .difficulty-buttons {
+        gap: 8px;
+    }
+
+    .difficulty-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .control-buttons button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    .header h1 {
+        font-size: 24px;
+    }
+
+    .game-info {
+        font-size: 12px;
+    }
+
+    .board {
+        width: 98vw;
+        height: 98vw;
+        max-width: 400px;
+        max-height: 400px;
+    }
+
+    .tile {
+        font-size: 16px;
+    }
+
+    .buttons-container {
+        gap: 4px;
+        flex-wrap: wrap;
+    }
+
+    .num-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 14px;
+    }
+
+    .difficulty-buttons {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .difficulty-btn {
+        padding: 5px 10px;
+        font-size: 11px;
+    }
+
+    .control-buttons {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .control-buttons button {
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+/* 가로 모드 최적화 */
+@media (orientation: landscape) and (max-height: 500px) {
+    .container {
+        padding: 10px;
+    }
+
+    .header h1 {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+
+    .game-info {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    .board {
+        width: 60vh;
+        height: 60vh;
+        max-width: 400px;
+        max-height: 400px;
+    }
+
+    .tile {
+        font-size: 14px;
+    }
+
+    .buttons-container {
+        gap: 4px;
+    }
+
+    .num-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 12px;
+    }
+
+    .difficulty-buttons {
+        gap: 6px;
+        margin-bottom: 15px;
+    }
+
+    .difficulty-btn {
+        padding: 4px 8px;
+        font-size: 10px;
+    }
 }

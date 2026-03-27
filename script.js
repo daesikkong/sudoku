@@ -1,59 +1,382 @@
-const puzzles = [
-    [
-        "--74916-5",
-        "2---6-3-9",
-        "-----7-1-",
-        "-586----4",
-        "--3----9-",
-        "--62--187",
-        "9-4-7---2",
-        "67-83----",
-        "81--45---"
+const puzzleData = {
+    easy: [
+        {
+            puzzle: [
+                "--74916-5",
+                "2---6-3-9",
+                "-----7-1-",
+                "-586----4",
+                "--3----9-",
+                "--62--187",
+                "9-4-7---2",
+                "67-83----",
+                "81--45---"
+            ],
+            solution: [
+                "387491625",
+                "241568379",
+                "569327418",
+                "758619234",
+                "123784596",
+                "496253187",
+                "934176852",
+                "675832941",
+                "812945763"
+            ]
+        },
+        {
+            puzzle: [
+                "53--7----",
+                "6--195---",
+                "-98----6-",
+                "8---6---3",
+                "4--8-3--1",
+                "7---2---6",
+                "-6----28-",
+                "---419--5",
+                "----8--79"
+            ],
+            solution: [
+                "534672981",
+                "672195348",
+                "198345627",
+                "859761423",
+                "426853791",
+                "713929856",
+                "961537284",
+                "287419635",
+                "345286179"
+            ]
+        },
+        {
+            puzzle: [
+                "1-5-3-7--",
+                "--8-2-9--",
+                "7--4-1---",
+                "--9-6-2--",
+                "5---8---3",
+                "--4-1-9--",
+                "---3-6--1",
+                "--6-9-4--",
+                "--2-7-5-8"
+            ],
+            solution: [
+                "145638729",
+                "368729415",
+                "729415863",
+                "893567241",
+                "514892637",
+                "672341598",
+                "931856472",
+                "256974183",
+                "487213956"
+            ]
+        },
+        {
+            puzzle: [
+                "--2-6-8--",
+                "58---97--",
+                "----15---",
+                "----37-1-",
+                "6-9---5-8",
+                "-1-85----",
+                "---74----",
+                "--97---36",
+                "--8-3-2--"
+            ],
+            solution: [
+                "192675834",
+                "583429671",
+                "467318529",
+                "859763412",
+                "621894753",
+                "714852396",
+                "936541287",
+                "248976135",
+                "375126948"
+            ]
+        },
+        {
+            puzzle: [
+                "9--2-5---",
+                "---7-3-4-",
+                "7-8-----6",
+                "---6-1-9-",
+                "5---8---2",
+                "-9-2-7---",
+                "6-----9-3",
+                "-4-1-8---",
+                "---9-2--7"
+            ],
+            solution: [
+                "936245817",
+                "152763849",
+                "748519326",
+                "863471295",
+                "591638472",
+                "429827561",
+                "617952483",
+                "345186927",
+                "278394615"
+            ]
+        }
     ],
-    [
-        "53--7----",
-        "6--195---",
-        "-98----6-",
-        "8---6---3",
-        "4--8-3--1",
-        "7---2---6",
-        "-6----28-",
-        "---419--5",
-        "----8--79"
-    ]
-];
-
-const solutions = [
-    [
-        "387491625",
-        "241568379",
-        "569327418",
-        "758619234",
-        "123784596",
-        "496253187",
-        "934176852",
-        "675832941",
-        "812945763"
+    medium: [
+        {
+            puzzle: [
+                "-2-6-8---",
+                "58----9--",
+                "----1-5--",
+                "----3-7-1",
+                "6-9-----8",
+                "-1-8-5---",
+                "---7-4---",
+                "--9-7---3",
+                "---8-3-2-"
+            ],
+            solution: [
+                "123678945",
+                "584239671",
+                "967415328",
+                "895367412",
+                "621945783",
+                "413852697",
+                "736194856",
+                "259786134",
+                "348521769"
+            ]
+        },
+        {
+            puzzle: [
+                "--7-2----",
+                "4--8-1---",
+                "----9-6--",
+                "7---3-4--",
+                "---5-8---",
+                "--6-1---9",
+                "--2-7----",
+                "---4-9--5",
+                "----3-8--"
+            ],
+            solution: [
+                "867925134",
+                "492831567",
+                "153479628",
+                "718362495",
+                "926548371",
+                "345617289",
+                "531296847",
+                "284759613",
+                "679183452"
+            ]
+        },
+        {
+            puzzle: [
+                "---6-8-9-",
+                "8------7-",
+                "-2-9-----",
+                "-----2-8-",
+                "9-7---4-6",
+                "-8-3-----",
+                "-----9-2-",
+                "-7------8",
+                "-9-8-6---"
+            ],
+            solution: [
+                "145678932",
+                "863925471",
+                "729134658",
+                "651742389",
+                "937851246",
+                "482369715",
+                "316597824",
+                "574216893",
+                "298483567"
+            ]
+        },
+        {
+            puzzle: [
+                "1--4-7---",
+                "---2-3-8-",
+                "8-------9",
+                "---8-4-3-",
+                "7---9---6",
+                "-3-6-1---",
+                "9-------2",
+                "-8-5-2---",
+                "---7-9--4"
+            ],
+            solution: [
+                "156497283",
+                "492638715",
+                "837521649",
+                "965842371",
+                "728319456",
+                "341765892",
+                "913274568",
+                "584956127",
+                "672183934"
+            ]
+        },
+        {
+            puzzle: [
+                "--9-1----",
+                "4---7-2--",
+                "----8-9--",
+                "7--3-5---",
+                "---6-4---",
+                "---8-2--6",
+                "--9-5----",
+                "--2-6---3",
+                "----3-7--"
+            ],
+            solution: [
+                "869315472",
+                "435678219",
+                "721849635",
+                "794325861",
+                "153764928",
+                "286192547",
+                "917536284",
+                "542987163",
+                "638451796"
+            ]
+        }
     ],
-    [
-        "534672981",
-        "672195348",
-        "198345627",
-        "859761423",
-        "426853791",
-        "713929856",
-        "961537284",
-        "287419635",
-        "345286179"
+    hard: [
+        {
+            puzzle: [
+                "----9-8--",
+                "8------9-",
+                "-2-9-----",
+                "-----2-8-",
+                "9-7---4-6",
+                "-8-3-----",
+                "-----9-2-",
+                "-7------8",
+                "---8-6---"
+            ],
+            solution: [
+                "145679832",
+                "863245971",
+                "729138456",
+                "651742389",
+                "937851246",
+                "482369715",
+                "316597824",
+                "574216893",
+                "298483567"
+            ]
+        },
+        {
+            puzzle: [
+                "1--4-7---",
+                "---2-3-8-",
+                "8-------9",
+                "---8-4-3-",
+                "7---9---6",
+                "-3-6-1---",
+                "9-------2",
+                "-8-5-2---",
+                "---7-9--4"
+            ],
+            solution: [
+                "156497283",
+                "492638715",
+                "837521649",
+                "965842371",
+                "728319456",
+                "341765892",
+                "913274568",
+                "584956127",
+                "672183934"
+            ]
+        },
+        {
+            puzzle: [
+                "--9-1----",
+                "4---7-2--",
+                "----8-9--",
+                "7--3-5---",
+                "---6-4---",
+                "---8-2--6",
+                "--9-5----",
+                "--2-6---3",
+                "----3-7--"
+            ],
+            solution: [
+                "869315472",
+                "435678219",
+                "721849635",
+                "794325861",
+                "153764928",
+                "286192547",
+                "917536284",
+                "542987163",
+                "638451796"
+            ]
+        },
+        {
+            puzzle: [
+                "----8-1--",
+                "7------8-",
+                "-3-8-----",
+                "-----3-7-",
+                "8-6---5-9",
+                "-7-4-----",
+                "-----9-3-",
+                "-8------6",
+                "---9-5---"
+            ],
+            solution: [
+                "945872136",
+                "763145892",
+                "128369457",
+                "591623784",
+                "836714529",
+                "472598613",
+                "619457238",
+                "387921465",
+                "254836971"
+            ]
+        },
+        {
+            puzzle: [
+                "2--7-9---",
+                "---3-6-2-",
+                "9-------8",
+                "---9-5-4-",
+                "6---8---7",
+                "-4-2-9---",
+                "8-------3",
+                "-2-4-3---",
+                "---9-7--5"
+            ],
+            solution: [
+                "245789136",
+                "178365924",
+                "963142758",
+                "731958642",
+                "659421387",
+                "842673591",
+                "816594273",
+                "527836419",
+                "394217865"
+            ]
+        }
     ]
-];
+};
 
-let currentPuzzle = null;
+let currentDifficulty = 'easy';
+let currentPuzzleIndex = null;
 let errors = 0;
 let numSelected = null;
 let tiles = [];
+let startTime = null;
+let timerInterval = null;
 
-function getRandomPuzzleIndex(excludeIndex = null) {
+function getRandomPuzzleIndex(difficulty, excludeIndex = null) {
+    const puzzles = puzzleData[difficulty];
     if (puzzles.length === 0) return null;
     if (puzzles.length === 1) return 0;
 
@@ -65,9 +388,31 @@ function getRandomPuzzleIndex(excludeIndex = null) {
     return idx;
 }
 
+function formatTime(seconds) {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+}
+
+function startTimer() {
+    if (timerInterval) clearInterval(timerInterval);
+    startTime = Date.now();
+    timerInterval = setInterval(() => {
+        const elapsed = Math.floor((Date.now() - startTime) / 1000);
+        document.getElementById('timer').textContent = formatTime(elapsed);
+    }, 1000);
+}
+
+function stopTimer() {
+    if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+}
+
 function init() {
-    if (currentPuzzle === null) {
-        currentPuzzle = getRandomPuzzleIndex();
+    if (currentPuzzleIndex === null) {
+        currentPuzzleIndex = getRandomPuzzleIndex(currentDifficulty);
     }
 
     errors = 0;
@@ -75,13 +420,34 @@ function init() {
     tiles = [];
     document.getElementById('errorCount').textContent = '0';
     document.getElementById('winModal').classList.remove('show');
+    document.getElementById('difficultyDisplay').textContent = getDifficultyText(currentDifficulty);
+    updateDifficultyButtons();
     setupTiles();
     setupButtons();
+    startTimer();
+}
+
+function updateDifficultyButtons() {
+    document.querySelectorAll('.difficulty-btn').forEach(btn => {
+        btn.classList.remove('selected');
+    });
+    document.querySelector(`.${currentDifficulty}-btn`).classList.add('selected');
+}
+
+function getDifficultyText(difficulty) {
+    const texts = {
+        easy: '쉬움',
+        medium: '중간',
+        hard: '어려움'
+    };
+    return texts[difficulty] || difficulty;
 }
 
 function setupTiles() {
     const board = document.getElementById('board');
     board.innerHTML = '';
+
+    const currentPuzzleData = puzzleData[currentDifficulty][currentPuzzleIndex];
 
     for (let r = 0; r < 9; r++) {
         for (let c = 0; c < 9; c++) {
@@ -90,7 +456,7 @@ function setupTiles() {
             tile.dataset.row = r;
             tile.dataset.col = c;
 
-            const char = puzzles[currentPuzzle][r][c];
+            const char = currentPuzzleData.puzzle[r][c];
             if (char !== '-') {
                 tile.textContent = char;
                 tile.classList.add('fixed');
@@ -135,7 +501,8 @@ function handleTileClick(r, c, tile) {
     }
 
     const selectedNum = numSelected.textContent;
-    const correct = solutions[currentPuzzle][r][c];
+    const currentPuzzleData = puzzleData[currentDifficulty][currentPuzzleIndex];
+    const correct = currentPuzzleData.solution[r][c];
 
     if (selectedNum === correct) {
         tile.textContent = selectedNum;
@@ -152,26 +519,39 @@ function handleTileClick(r, c, tile) {
 }
 
 function checkWin() {
+    const currentPuzzleData = puzzleData[currentDifficulty][currentPuzzleIndex];
     const allFilled = tiles.every(t => t.element.textContent !== '');
     const allCorrect = tiles.every(t => {
         if (t.element.textContent === '') return false;
-        return t.element.textContent === solutions[currentPuzzle][t.row][t.col];
+        return t.element.textContent === currentPuzzleData.solution[t.row][t.col];
     });
 
     if (allFilled && allCorrect) {
+        stopTimer();
         document.getElementById('winModal').classList.add('show');
     }
 }
 
 function resetGame() {
-    currentPuzzle = getRandomPuzzleIndex(currentPuzzle);
+    currentPuzzleIndex = getRandomPuzzleIndex(currentDifficulty, currentPuzzleIndex);
+    stopTimer();
     init();
 }
 
 function nextPuzzle() {
-    const nextIndex = getRandomPuzzleIndex(currentPuzzle);
-    currentPuzzle = nextIndex;
+    const nextIndex = getRandomPuzzleIndex(currentDifficulty, currentPuzzleIndex);
+    currentPuzzleIndex = nextIndex;
+    stopTimer();
     init();
+}
+
+function changeDifficulty(difficulty) {
+    if (currentDifficulty !== difficulty) {
+        currentDifficulty = difficulty;
+        currentPuzzleIndex = null;
+        stopTimer();
+        init();
+    }
 }
 
 init();

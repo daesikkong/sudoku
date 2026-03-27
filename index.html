@@ -88,47 +88,23 @@
             background-color: #fff3cd;
         }
 
-        /* 굵은 테두리 */
-        .tile:nth-child(3n) {
+        /* 3x3 블록 경계 - 오른쪽 및 아래쪽 */
+        .tile[data-col="2"],
+        .tile[data-col="5"] {
             border-right: 3px solid black;
         }
 
-        .tile:nth-child(3n + 1) {
-            border-left: 1px solid #999;
-        }
-
-        .tile:nth-child(n + 19):nth-child(-n + 27),
-        .tile:nth-child(n + 55):nth-child(-n + 63) {
+        .tile[data-row="2"],
+        .tile[data-row="5"] {
             border-bottom: 3px solid black;
         }
 
-        .tile:nth-child(n + 1):nth-child(-n + 9),
-        .tile:nth-child(n + 28):nth-child(-n + 36),
-        .tile:nth-child(n + 64):nth-child(-n + 72) {
-            border-top: 1px solid #999;
-        }
-
-        .tile:nth-child(9n + 1),
-        .tile:nth-child(9n + 2),
-        .tile:nth-child(9n + 3) {
-            border-left: 3px solid black;
-        }
-
-        .tile:nth-child(9n + 7),
-        .tile:nth-child(9n + 8),
-        .tile:nth-child(9n + 9) {
+        /* 전체 외곽 경계 */
+        .tile[data-col="8"] {
             border-right: 3px solid black;
         }
 
-        .tile:nth-child(-n + 3),
-        .tile:nth-child(n + 10):nth-child(-n + 12),
-        .tile:nth-child(n + 19):nth-child(-n + 21) {
-            border-top: 3px solid black;
-        }
-
-        .tile:nth-child(n + 73):nth-child(-n + 75),
-        .tile:nth-child(n + 82):nth-child(-n + 84),
-        .tile:nth-child(n + 73):nth-child(-n + 81) {
+        .tile[data-row="8"] {
             border-bottom: 3px solid black;
         }
 

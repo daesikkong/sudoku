@@ -10,11 +10,16 @@
     <div class="container">
         <div class="header">
             <h1>🎮 스도쿠 게임</h1>
-            <div class="game-info">
-                <div class="difficulty">난이도: <span id="difficultyDisplay">쉬움</span></div>
-                <div class="timer">시간: <span id="timer">00:00</span></div>
-                <div class="error-count">에러: <span id="errorCount">0</span></div>
+            <div class="header-controls">
+                <button id="themeToggle" class="theme-btn" onclick="toggleTheme()" title="테마 변경">🌙</button>
             </div>
+        </div>
+
+        <div class="game-info">
+            <div class="difficulty">난이도: <span id="difficultyDisplay">쉬움</span></div>
+            <div class="timer">시간: <span id="timer">00:00</span></div>
+            <div class="error-count">에러: <span id="errorCount">0</span></div>
+            <div class="hint-count">힌트: <span id="hintCount">0</span>/3</div>
         </div>
 
         <div class="difficulty-buttons">
@@ -28,7 +33,32 @@
         <div class="buttons-container" id="numButtons"></div>
 
         <div class="control-buttons">
+            <button class="hint-btn" onclick="useHint()">💡 힌트</button>
             <button class="reset-btn" onclick="resetGame()">게임 리셋</button>
+        </div>
+
+        <div class="records-section">
+            <div id="recordsDisplay" class="records-display">
+                <h3>🏆 최고 기록</h3>
+                <div class="record-item">
+                    <span class="record-difficulty">쉬움</span>
+                    <span class="record-time">--:--</span>
+                    <span class="record-errors">에러: -</span>
+                    <span class="record-hints">힌트: -</span>
+                </div>
+                <div class="record-item">
+                    <span class="record-difficulty">중간</span>
+                    <span class="record-time">--:--</span>
+                    <span class="record-errors">에러: -</span>
+                    <span class="record-hints">힌트: -</span>
+                </div>
+                <div class="record-item">
+                    <span class="record-difficulty">어려움</span>
+                    <span class="record-time">--:--</span>
+                    <span class="record-errors">에러: -</span>
+                    <span class="record-hints">힌트: -</span>
+                </div>
+            </div>
         </div>
     </div>
 

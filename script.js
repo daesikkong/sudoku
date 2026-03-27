@@ -374,6 +374,41 @@ let numSelected = null;
 let tiles = [];
 let startTime = null;
 let timerInterval = null;
+let hintsUsed = 0;
+let isDarkMode = false;
+
+// 최고 기록 저장/불러오기
+function saveRecord(difficulty, time, errors, hints) {
+    const record = { time, errors, hints, date: new Date().toISOString() };
+    const records = JSON.parse(localStorage.getItem('sudokuRecords') || '{}');
+    records[difficulty] = record;
+    localStorage.setItem('sudokuRecords', JSON.stringify(records));
+}
+
+function loadRecord(difficulty) {
+    const records = JSON.parse(localStorage.getItem('sudokuRecords') || '{}');
+    return records[difficulty] || null;
+}
+
+function loadTheme() {
+    isDarkMode = localStorage.getItem('sudokuTheme') === 'dark';
+    updateTheme();
+}
+
+function saveTheme() {
+    localStorage.setItem('sudokuTheme', isDarkMode ? 'dark' : 'light');
+}
+
+function toggleTheme() {
+    isDarkMode = !isDarkMode;
+    updateTheme();
+    saveTheme();
+}
+
+function updateTheme() {
+    document.body.classList.toggle('dark-mode', isDarkMode);
+    document.getElementById('themeToggle').textContent = isDarkMode ? '☀️' : '🌙';
+}
 
 function getRandomPuzzleIndex(difficulty, excludeIndex = null) {
     const puzzles = puzzleData[difficulty];
@@ -418,10 +453,13 @@ function init() {
     errors = 0;
     numSelected = null;
     tiles = [];
+    hintsUsed = 0;
     document.getElementById('errorCount').textContent = '0';
+    document.getElementById('hintCount').textContent = '0';
     document.getElementById('winModal').classList.remove('show');
     document.getElementById('difficultyDisplay').textContent = getDifficultyText(currentDifficulty);
     updateDifficultyButtons();
+    updateRecordsDisplay();
     setupTiles();
     setupButtons();
     startTimer();
@@ -528,8 +566,69 @@ function checkWin() {
 
     if (allFilled && allCorrect) {
         stopTimer();
+        const elapsed = Math.floor((Date.now() - startTime) / 1000);
+        saveRecord(currentDifficulty, elapsed, errors, hintsUsed);
+        updateRecordsDisplay();
         document.getElementById('winModal').classList.add('show');
     }
+}
+
+function useHint() {
+    if (hintsUsed >= 3) {
+        alert('힌트는 게임당 최대 3번까지 사용할 수 있습니다!');
+        return;
+    }
+
+    const emptyTiles = tiles.filter(t => !t.element.textContent && !t.element.classList.contains('fixed'));
+    if (emptyTiles.length === 0) {
+        alert('채워야 할 빈 칸이 없습니다!');
+        return;
+    }
+
+    const randomTile = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
+    const currentPuzzleData = puzzleData[currentDifficulty][currentPuzzleIndex];
+    const correctNum = currentPuzzleData.solution[randomTile.row][randomTile.col];
+
+    randomTile.element.textContent = correctNum;
+    randomTile.element.classList.add('hinted');
+    hintsUsed++;
+    document.getElementById('hintCount').textContent = hintsUsed;
+
+    // 힌트 사용 애니메이션
+    randomTile.element.style.animation = 'hintPulse 0.5s ease';
+    setTimeout(() => {
+        randomTile.element.style.animation = '';
+    }, 500);
+
+    checkWin();
+}
+
+function updateRecordsDisplay() {
+    const records = JSON.parse(localStorage.getItem('sudokuRecords') || '{}');
+    const recordDisplay = document.getElementById('recordsDisplay');
+
+    let html = '<h3>🏆 최고 기록</h3>';
+    ['easy', 'medium', 'hard'].forEach(diff => {
+        const record = records[diff];
+        const diffText = getDifficultyText(diff);
+        if (record) {
+            html += `<div class="record-item">
+                <span class="record-difficulty">${diffText}</span>
+                <span class="record-time">${formatTime(record.time)}</span>
+                <span class="record-errors">에러: ${record.errors}</span>
+                <span class="record-hints">힌트: ${record.hints}</span>
+            </div>`;
+        } else {
+            html += `<div class="record-item">
+                <span class="record-difficulty">${diffText}</span>
+                <span class="record-time">--:--</span>
+                <span class="record-errors">에러: -</span>
+                <span class="record-hints">힌트: -</span>
+            </div>`;
+        }
+    });
+
+    recordDisplay.innerHTML = html;
 }
 
 function resetGame() {
@@ -554,4 +653,5 @@ function changeDifficulty(difficulty) {
     }
 }
 
+loadTheme();
 init();
